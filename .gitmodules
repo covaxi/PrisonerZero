@@ -1,0 +1,3 @@
+[submodule "Telegram.Bot.Extensions.Polling"]
+	path = Telegram.Bot.Extensions.Polling
+	url = https://github.com/TelegramBots/Telegram.Bot.Extensions.Polling.git

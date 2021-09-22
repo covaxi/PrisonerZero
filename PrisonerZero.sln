@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrisonerZero", "PrisonerZero\PrisonerZero.csproj", "{50DE54E2-2001-4B8A-952C-9073535C46E1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telegram.Bot.Extensions.Polling", "..\Telegram.Bot.Extensions.Polling\src\Telegram.Bot.Extensions.Polling\Telegram.Bot.Extensions.Polling.csproj", "{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telegram.Bot.Extensions.Polling", "Telegram.Bot.Extensions.Polling\src\Telegram.Bot.Extensions.Polling\Telegram.Bot.Extensions.Polling.csproj", "{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
