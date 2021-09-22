@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31717.71
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrisonerZero", "PrisonerZero\PrisonerZero.csproj", "{50DE54E2-2001-4B8A-952C-9073535C46E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrisonerZero", "PrisonerZero\PrisonerZero.csproj", "{50DE54E2-2001-4B8A-952C-9073535C46E1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telegram.Bot.Extensions.Polling", "..\Telegram.Bot.Extensions.Polling\src\Telegram.Bot.Extensions.Polling\Telegram.Bot.Extensions.Polling.csproj", "{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{50DE54E2-2001-4B8A-952C-9073535C46E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50DE54E2-2001-4B8A-952C-9073535C46E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50DE54E2-2001-4B8A-952C-9073535C46E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64B091A-3818-4F4A-87C0-CF1B10FE7D6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
