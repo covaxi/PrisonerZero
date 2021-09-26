@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Telegram.Bot.Extensions.Polling\src\Telegram.Bot.Extensions.Polling\Telegram.Bot.Extensions.Polling.csproj" />
+    <ProjectReference Include="..\Telegram.Bot.Extensions.Polling\src\Telegram.Bot.Extensions.Polling\Telegram.Bot.Extensions.Polling.csproj" />
   </ItemGroup>
 
 </Project>

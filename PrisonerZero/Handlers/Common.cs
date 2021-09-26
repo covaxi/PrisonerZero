@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
@@ -47,26 +48,25 @@ namespace PrisonerZero.Handlers
 
         private static async Task BotOnMessageReceived(ITelegramBotClient botClient, Message message)
         {
+            
             Console.WriteLine($"Receive message type: {message.Type}");
             if (message.Type != MessageType.Text)
                 return;
 
-            var texts = message.Text?.Split(' ').ToArray();
-            var action = texts?.First()?.ToLower();
-            
-            if (texts.Length >= 1 && (action == "/w" 
-                    || action == "!w"
-                    || action == "!weather"
-                    || action == "/weather"
-                    || action == "/погода"
-                    || action == "!погода"
-                    || action == "!п"
-                    || action == "/п"
-                    || action == "!в"
-                    || action == "/в"))
+            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands));
+
+            var match = Regex.Match(message.Text ?? "", $"^([/!](?'command'{commands}))(?'personal'@{Configuration.BotNick})?(\\s(?'payload'.*))?$");
+
+            var command = match.Groups["command"].Value;
+            var personal = match.Groups["personal"].Success;
+            var payload = match.Groups["payload"].Value;
+            if (match.Success && WeatherCommand.Commands.Contains(command) || message.Text == $"@{Configuration.BotNick}")
             {
-                var sentMessage = await Reply(botClient, message, await Weather.GetWeather(texts.Length > 1 ? texts[1] : null));
-                Console.WriteLine($"The message was sent with id: {sentMessage.MessageId}");
+                await Reply(botClient, message, await WeatherCommand.GetWeather(payload));
+            }
+            else if (match.Success && RandomCommand.Commands.Contains(command))
+            {
+                await Reply(botClient, message, await RandomCommand.GetRandom(payload));
             }
 
             static async Task<Message> Reply(ITelegramBotClient botClient, Message message, string text)
