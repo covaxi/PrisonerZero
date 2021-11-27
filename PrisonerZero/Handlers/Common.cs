@@ -53,7 +53,7 @@ namespace PrisonerZero.Handlers
             if (message.Type != MessageType.Text)
                 return;
 
-            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands));
+            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands).Concat(GoogleCommand.Commands));
 
             var match = Regex.Match(message.Text ?? "", $"^([/!](?'command'{commands}))(?'personal'@{Configuration.BotNick})?(\\s(?'payload'.*))?$");
 
@@ -68,10 +68,20 @@ namespace PrisonerZero.Handlers
             {
                 await Reply(botClient, message, await RandomCommand.GetRandom(payload));
             }
+            else if (match.Success && GoogleCommand.Commands.Contains(command) && !string.IsNullOrWhiteSpace(payload))
+            {
+                await Reply(botClient, message, await GoogleCommand.GetResult(payload));
+            }
 
             static async Task<Message> Reply(ITelegramBotClient botClient, Message message, string text)
             {
-                return await botClient.SendTextMessageAsync(message.Chat.Id, text, replyToMessageId: message.MessageId);
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    return await botClient.SendTextMessageAsync(message.Chat.Id, text,
+                        replyToMessageId: message.MessageId);
+                }
+
+                return null;
             }
         }
 
