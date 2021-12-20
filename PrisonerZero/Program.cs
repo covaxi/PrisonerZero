@@ -14,9 +14,17 @@ namespace PrisonerZero
         static async Task Main(string[] args)
         {
             Bot = new TelegramBotClient(Configuration.BotToken);
-            var me = await Bot.GetMeAsync();
+            Telegram.Bot.Types.User me = null;
+            try
+            {
+                me = await Bot.GetMeAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
-            Console.Title = me.Username;
+            Console.WriteLine($"me = {me?.Username}");
             using var cts = new CancellationTokenSource();
             var options = new Telegram.Bot.Extensions.Polling.ReceiverOptions()
             {
