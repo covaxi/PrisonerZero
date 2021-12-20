@@ -13,7 +13,7 @@ namespace PrisonerZero
         internal static TelegramBotClient Bot;
         static async Task Main(string[] args)
         {
-            Console.WriteLine($"Using token {Configuration.BotToken}")
+            Console.WriteLine($"Using token {Configuration.BotToken}");
             Bot = new TelegramBotClient(Configuration.BotToken);
             Telegram.Bot.Types.User me = null;
             try
