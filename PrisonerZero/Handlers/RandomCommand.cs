@@ -32,7 +32,7 @@ namespace PrisonerZero.Handlers
                 var max = Math.Max(one, two);
                 return Task.FromResult($"Случаное число от {min} до {max}: {Rnd.Next(min, max)}");
             }
-            var all = !payload.Contains("|") && !payload.Contains(",") ? Regex.Split(payload, "[|, ]") : Regex.Split(payload, "[|, ]");
+            var all = payload.Contains("|") ? Regex.Split(payload, "[|+]") : payload.Contains(",") ? Regex.Split(payload, "[,+]") : Regex.Split(payload, "\\s+");
             return Task.FromResult($"Случайный выбор: {all[Rnd.Next(all.Length)].Trim()}");
         }
     }

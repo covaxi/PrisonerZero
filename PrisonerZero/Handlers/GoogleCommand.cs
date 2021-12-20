@@ -13,7 +13,7 @@ namespace PrisonerZero.Handlers
 
         internal static async Task<string> GetResult(string payload)
         {
-            return "";
+            // return "";
             var service = new CustomSearchAPIService(new BaseClientService.Initializer
                 {ApiKey = Configuration.GoogleApiKey});
             var request = service.Cse.List();
