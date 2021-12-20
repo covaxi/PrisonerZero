@@ -26,7 +26,6 @@ namespace PrisonerZero
             Bot.StartReceiving(new DefaultUpdateHandler(Common.HandleUpdateAsync, Common.HandleErrorAsync), options, cts.Token);
             Console.WriteLine("Press [Enter] to exit...");
             Console.ReadLine();
-            Console.WriteLine("Hello World!");
         }
     }
 }
