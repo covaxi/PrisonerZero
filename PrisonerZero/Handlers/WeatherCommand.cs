@@ -21,7 +21,7 @@ namespace PrisonerZero.Handlers
         {
             var location = string.IsNullOrWhiteSpace(payload) ? "Рязань" : Regex.Match(payload, Match).Groups["city"].Value;
 
-            var url = $"https://api.openweathermap.org/data/2.5/weather?q={location}&APPID={Token}&lang=ru&units=metric";
+            var url = $"http://api.openweathermap.org/data/2.5/weather?q={location}&APPID={Token}&lang=ru&units=metric";
             try
             { 
                 using var client = new WebClient();
