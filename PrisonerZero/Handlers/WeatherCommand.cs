@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,8 +25,8 @@ namespace PrisonerZero.Handlers
             var url = $"http://api.openweathermap.org/data/2.5/weather?q={location}&APPID={Token}&lang=ru&units=metric";
             try
             { 
-                using var client = new WebClient();
-                var result = await client.DownloadStringTaskAsync(url);
+                using var client = new HttpClient();
+                var result = await client.GetStringAsync(url);
                 var weather = JsonConvert.DeserializeObject<WeatherInfo>(result);
                 return
                     $@"{weather.Name}:({weather.DateTime:HH:mm}) {weather.Main.Temperature}°C, {weather.Wind.Speed:0.#}м/с (порывы до {weather.Wind.Gust:0.#} м/с) {GetDirectionArrow(weather.Wind.Deg)}({weather.Wind.Deg:0}°) {weather.Main.Pressure:0.##}мм рт. ст., {weather.Main.Humidity:0}% влажн., {weather.Stations.First()?.Description}";

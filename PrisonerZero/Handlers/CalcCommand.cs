@@ -5,6 +5,7 @@ using Google.Apis;
 using Google.Apis.Services;
 using Google.Apis.CustomSearchAPI.v1;
 using System.Net;
+using System.Net.Http;
 
 namespace PrisonerZero.Handlers
 {
@@ -16,9 +17,9 @@ namespace PrisonerZero.Handlers
         {
             if (!string.IsNullOrWhiteSpace(payload))
             {
-                var url = $"https://api.mathjs.org/v4/?expr={payload}";
-                using var client = new WebClient();
-                var result = await client.DownloadStringTaskAsync(url);
+                var url = $"https://api.mathjs.org/v4/?expr={WebUtility.UrlEncode(payload)}";
+                using var client = new HttpClient();
+                var result = await client.GetStringAsync(url);
                 return result;
             }
             return "";
