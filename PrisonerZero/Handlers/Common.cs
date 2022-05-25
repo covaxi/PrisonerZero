@@ -53,7 +53,11 @@ namespace PrisonerZero.Handlers
             if (message.Type != MessageType.Text)
                 return;
 
+<<<<<<< HEAD
             var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands).Concat(CalcCommand.Commands));
+=======
+            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands).Concat(GoogleCommand.Commands));
+>>>>>>> 077fc38d8eb3c8865997d6f80efc77184d4b1e29
 
             var match = Regex.Match(message.Text ?? "", $"^([/!](?'command'{commands}))(?'personal'@{Configuration.BotNick})?(\\s(?'payload'.*))?$");
 
@@ -68,9 +72,15 @@ namespace PrisonerZero.Handlers
             {
                 await Reply(botClient, message, await RandomCommand.GetRandom(payload));
             }
+<<<<<<< HEAD
             else if (match.Success && CalcCommand.Commands.Contains(command) && !string.IsNullOrWhiteSpace(payload))
             {
                 await Reply(botClient, message, await CalcCommand.GetResult(payload));
+=======
+            else if (match.Success && GoogleCommand.Commands.Contains(command) && !string.IsNullOrWhiteSpace(payload))
+            {
+                await Reply(botClient, message, await GoogleCommand.GetResult(payload));
+>>>>>>> 077fc38d8eb3c8865997d6f80efc77184d4b1e29
             }
 
             static async Task<Message> Reply(ITelegramBotClient botClient, Message message, string text)

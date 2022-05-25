@@ -13,10 +13,19 @@ namespace PrisonerZero
         internal static TelegramBotClient Bot;
         static async Task Main(string[] args)
         {
+            Console.WriteLine($"Using token {Configuration.BotToken}");
             Bot = new TelegramBotClient(Configuration.BotToken);
-            var me = await Bot.GetMeAsync();
+            Telegram.Bot.Types.User me = null;
+            try
+            {
+                me = await Bot.GetMeAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
-            Console.Title = me.Username;
+            Console.WriteLine($"me = {me?.Username}");
             using var cts = new CancellationTokenSource();
             var options = new Telegram.Bot.Extensions.Polling.ReceiverOptions()
             {
@@ -26,7 +35,6 @@ namespace PrisonerZero
             Bot.StartReceiving(new DefaultUpdateHandler(Common.HandleUpdateAsync, Common.HandleErrorAsync), options, cts.Token);
             Console.WriteLine("Press [Enter] to exit...");
             Console.ReadLine();
-            Console.WriteLine("Hello World!");
         }
     }
 }
