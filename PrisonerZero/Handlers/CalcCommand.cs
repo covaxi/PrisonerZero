@@ -25,5 +25,7 @@ namespace PrisonerZero.Handlers
             return "";
 
         }
+
+        // TODO: add google to calculator (works with currencies, etc...) http://www.google.com/search?q=123123123
     }
 }
