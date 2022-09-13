@@ -16,7 +16,7 @@ namespace PrisonerZero.Handlers
 {
     public class Common
     {
-        public static Task HandleErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        public static Task HandleErrorAsync(ITelegramBotClient _1, Exception exception, CancellationToken _2)
         {
             var ErrorMessage = exception switch
             {
@@ -58,7 +58,7 @@ namespace PrisonerZero.Handlers
             var match = Regex.Match(message.Text ?? "", $"^([/!](?'command'{commands}))(?'personal'@{Configuration.BotNick})?(\\s(?'payload'.*))?$");
 
             var command = match.Groups["command"].Value;
-            var personal = match.Groups["personal"].Success;
+            _ = match.Groups["personal"].Success;
             var payload = match.Groups["payload"].Value;
             if (match.Success && WeatherCommand.Commands.Contains(command) || message.Text == $"@{Configuration.BotNick}")
             {
@@ -72,6 +72,8 @@ namespace PrisonerZero.Handlers
             {
                 await Reply(botClient, message, await CalcCommand.GetResult(payload));
             }
+            else if (message.Type == MessageType.Text)
+                Console.WriteLine($"{message.From.Username} : {message.Text}");
 
             static async Task<Message> Reply(ITelegramBotClient botClient, Message message, string text)
             {
@@ -85,10 +87,6 @@ namespace PrisonerZero.Handlers
             }
         }
 
-        private static Task UnknownUpdateHandlerAsync(ITelegramBotClient botClient, Update update)
-        {
-            Console.WriteLine($"Unknown update type: {update.Type}");
-            return Task.CompletedTask;
-        }
+        private static Task UnknownUpdateHandlerAsync(ITelegramBotClient _1, Update _2) => Task.CompletedTask;
     }
 }
