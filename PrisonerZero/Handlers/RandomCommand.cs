@@ -11,7 +11,7 @@ namespace PrisonerZero.Handlers
     {
         public static readonly IEnumerable<string> Commands = new string[] { "random", "rnd", "r"};
 
-        readonly static Random Rnd = new Random();
+        readonly static Random Rnd = new();
 
         internal static Task<string> GetRandom(string payload)
         {
@@ -23,7 +23,7 @@ namespace PrisonerZero.Handlers
             {
                 return Task.FromResult($"Случайное число до {random}: {1+Rnd.Next(random)}");
             }
-            var m = Regex.Match(payload, "^\\s*(?'one':-?\\d+)\\s*..\\s*(?'two'-?\\d+)\\s*$");
+            var m = Regex.Match(payload, "^\\s*(?'one'-?\\d+)\\s*..\\s*(?'two'-?\\d+)\\s*$");
             if (m.Success)
             {
                 var one = int.Parse(m.Groups["one"].Value);
@@ -32,7 +32,7 @@ namespace PrisonerZero.Handlers
                 var max = Math.Max(one, two);
                 return Task.FromResult($"Случаное число от {min} до {max}: {Rnd.Next(min, max)}");
             }
-            var all = payload.Contains("|") ? Regex.Split(payload, "[|+]") : payload.Contains(",") ? Regex.Split(payload, "[,+]") : Regex.Split(payload, "\\s+");
+            var all = payload.Contains('|') ? Regex.Split(payload, "[|+]") : payload.Contains(',') ? Regex.Split(payload, "[,+]") : Regex.Split(payload, "\\s+");
             return Task.FromResult($"Случайный выбор: {all[Rnd.Next(all.Length)].Trim()}");
         }
     }
