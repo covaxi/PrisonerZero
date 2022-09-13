@@ -11,7 +11,7 @@ namespace PrisonerZero
     internal class Program
     {
         internal static TelegramBotClient Bot;
-        static async Task Main(string[] args)
+        static async Task Main()
         {
             Console.WriteLine($"Using token {Configuration.BotToken}");
             Bot = new TelegramBotClient(Configuration.BotToken);
