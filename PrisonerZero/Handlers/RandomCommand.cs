@@ -36,16 +36,16 @@ namespace PrisonerZero.Handlers
             return Task.FromResult($"Случайный выбор: {all[Rnd.Next(all.Length)].Trim()}");
         }
 
-        [RegexGenerator("^\\s*(?'one'-?\\d+)\\s*..\\s*(?'two'-?\\d+)\\s*$", RegexOptions.CultureInvariant)]
+        [GeneratedRegex("^\\s*(?'one'-?\\d+)\\s*..\\s*(?'two'-?\\d+)\\s*$", RegexOptions.CultureInvariant)]
         private static partial Regex IntervalRegex();
 
-        [RegexGenerator("[|+]", RegexOptions.CultureInvariant)]
+        [GeneratedRegex("[|+]", RegexOptions.CultureInvariant)]
         private static partial Regex PipeRegex();
 
-        [RegexGenerator("[,+]", RegexOptions.CultureInvariant)]
+        [GeneratedRegex("[,+]", RegexOptions.CultureInvariant)]
         private static partial Regex CommaRegex();
 
-        [RegexGenerator("\\s+", RegexOptions.CultureInvariant)]
+        [GeneratedRegex("\\s+", RegexOptions.CultureInvariant)]
         private static partial Regex SpaceRegex();
     }
 

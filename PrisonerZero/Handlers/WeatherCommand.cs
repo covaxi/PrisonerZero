@@ -38,7 +38,7 @@ namespace PrisonerZero.Handlers
             }
         }
 
-        [RegexGenerator(CityMatch, RegexOptions.CultureInvariant)]
+        [GeneratedRegex(CityMatch, RegexOptions.CultureInvariant)]
         private static partial Regex CityRegex();
     }
 }
