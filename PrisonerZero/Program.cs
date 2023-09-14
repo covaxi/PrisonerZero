@@ -14,7 +14,7 @@ namespace PrisonerZero
         static async Task Main()
         {
             Console.WriteLine($"Using token {Configuration.BotToken}");
-            Bot = new TelegramBotClient(Configuration.BotToken);
+            TelegramBotClient Bot = new TelegramBotClient(Configuration.BotToken);
             Telegram.Bot.Types.User me = null;
             try
             {
@@ -33,8 +33,9 @@ namespace PrisonerZero
                 ThrowPendingUpdates = true
             };
             Bot.StartReceiving(new DefaultUpdateHandler(Common.HandleUpdateAsync, Common.HandleErrorAsync), options, cts.Token);
-            Console.WriteLine("Press [Enter] to exit...");
-            Console.ReadLine();
+
+            Console.WriteLine("Waiting for the next millennium...");
+            await Task.Delay(Timeout.Infinite);
         }
     }
 }
