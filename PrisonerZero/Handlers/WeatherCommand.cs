@@ -21,7 +21,7 @@ namespace PrisonerZero.Handlers
 
         public static async Task<string> GetWeather(string payload)
         {
-            var location = string.IsNullOrWhiteSpace(payload) ? "Рязань" : CityRegex().Match(payload).Groups["city"].Value;
+            var location = string.IsNullOrWhiteSpace(payload) ? "Ashdod" : CityRegex().Match(payload).Groups["city"].Value;
 
             var url = $"http://api.openweathermap.org/data/2.5/weather?q={location}&APPID={Token}&lang=ru&units=metric";
             try
