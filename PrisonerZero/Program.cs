@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot;
-using Telegram.Bot.Extensions.Polling;
+using Telegram.Bot.Polling;
 using Telegram.Bot.Types.Enums;
 
 namespace PrisonerZero
@@ -27,7 +27,7 @@ namespace PrisonerZero
 
             Console.WriteLine($"me = {me?.Username}");
             using var cts = new CancellationTokenSource();
-            var options = new Telegram.Bot.Extensions.Polling.ReceiverOptions()
+            var options = new ReceiverOptions()
             {
                 AllowedUpdates = new[] {UpdateType.Message},
                 ThrowPendingUpdates = true
