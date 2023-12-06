@@ -52,7 +52,7 @@ namespace PrisonerZero.Handlers
             if (message.Type != MessageType.Text)
                 return;
 
-            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands).Concat(CalcCommand.Commands));
+            var commands = string.Join('|',WeatherCommand.Commands.Concat(RandomCommand.Commands).Concat(CalcCommand.Commands).Concat(TimeCommand.Commands));
 
             var match = Regex.Match(message.Text ?? "", $"^([/!](?'command'{commands}))(?'personal'@{Configuration.BotNick})?(\\s(?'payload'.*))?$");
 
@@ -70,6 +70,10 @@ namespace PrisonerZero.Handlers
             else if (match.Success && CalcCommand.Commands.Contains(command) && !string.IsNullOrWhiteSpace(payload))
             {
                 await Reply(botClient, message, await CalcCommand.GetResult(payload));
+            }
+            else if (match.Success && TimeCommand.Commands.Contains(command))
+            {
+                await Reply(botClient, message, await TimeCommand.GetHebrewJewishDateString());
             }
             else if (message.Type == MessageType.Text)
                 Console.WriteLine($"{message.From.Username} : {message.Text}");
